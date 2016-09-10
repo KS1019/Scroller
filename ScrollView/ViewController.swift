@@ -12,6 +12,7 @@ class ViewController: UIViewController , UIScrollViewDelegate {
     
     @IBOutlet var scrollView: UIScrollView!//最上位のスクロールビュー
     let inchPerM = 6413.5
+    var currentPosition = Float()
     
     override func viewDidLoad() {
         scrollView.delegate = self
@@ -47,7 +48,12 @@ class ViewController: UIViewController , UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        print("距離 = \(scrollView.contentOffset.y / CGFloat(inchPerM))")
+        var currentPos = scrollView.contentOffset.y / CGFloat(inchPerM)
+        currentPos = currentPos * 100
+        currentPos = round(currentPos)
+        currentPosition = Float(currentPos) / 100
+        print(" 距離 = \(scrollView.contentOffset.y / CGFloat(inchPerM)) \n 現在距離 = \(currentPosition)")
+
     }
     
     override func prefersStatusBarHidden() -> Bool {
